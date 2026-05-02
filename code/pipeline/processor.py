@@ -1,7 +1,6 @@
 """Pipeline processor that orchestrates all agents."""
 
 import pandas as pd
-from typing import List
 from tqdm import tqdm
 
 from models import Ticket, AgentOutput
@@ -39,7 +38,7 @@ async def process_ticket(ticket_row: dict) -> AgentOutput:
     
     # Step 5: Generate
     if escalation.should_escalate:
-        output = await generate_escalation_response(ticket, classification, escalation)
+        output = await generate_escalation_response(ticket, classification, escalation, retrieval)
     else:
         output = await generate_response(ticket, classification, retrieval)
     
@@ -88,7 +87,7 @@ async def process_tickets(
     output_df.to_csv(output_path, index=False)
     
     print(f"\nComplete! Output written to {output_path}")
-    print(f"Summary:")
+    print("Summary:")
     print(f"  Total: {len(results)}")
     print(f"  Replied: {sum(1 for r in results if r['status'] == 'replied')}")
     print(f"  Escalated: {sum(1 for r in results if r['status'] == 'escalated')}")

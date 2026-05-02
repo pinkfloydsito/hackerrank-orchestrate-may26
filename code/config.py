@@ -13,9 +13,11 @@ DATA_DIR = REPO_ROOT / "data"
 SUPPORT_TICKETS_DIR = REPO_ROOT / "support_tickets"
 CODE_DIR = REPO_ROOT / "code"
 
-# Index files
-FAISS_INDEX_PATH = CODE_DIR / "corpus.index"
-METADATA_PATH = CODE_DIR / "corpus_metadata.pkl"
+# ChromaDB Configuration
+CHROMA_PERSIST_DIR = str(CODE_DIR / "chroma_data")
+CHROMA_COLLECTION = "corpus_index"
+
+# Product areas taxonomy
 PRODUCT_AREAS_PATH = CODE_DIR / "product_areas.json"
 
 # LLM Configuration
@@ -28,12 +30,14 @@ EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 EMBEDDING_DIM = 384
 
 # Chunking
-CHUNK_SIZE = 300  # words
-CHUNK_OVERLAP = 50  # words
+CHUNK_SIZE = 200  # Reduced for better granularity
+CHUNK_OVERLAP = 30  # words
 
 # Retrieval
-TOP_K_RETRIEVAL = 5
-SIMILARITY_THRESHOLD = 0.25
+TOP_K_RETRIEVAL = 10  # Retrieve more for re-ranking
+TOP_K_FINAL = 5  # Final chunks after re-ranking
+SIMILARITY_THRESHOLD = 0.25  # Lower threshold for more lenient matching
+HIGH_CONFIDENCE_SIMILARITY = 0.5  # If above this, don't escalate for low classification confidence
 
 # Classification
 CLASSIFICATION_CONFIDENCE_THRESHOLD = 0.6

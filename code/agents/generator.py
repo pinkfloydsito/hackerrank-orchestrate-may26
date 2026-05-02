@@ -1,7 +1,7 @@
 """Generator agent for creating responses and justifications."""
 
 from pydantic_ai import Agent
-from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
 from config import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL
@@ -16,7 +16,7 @@ def create_generator_agent() -> Agent:
         api_key=DEEPSEEK_API_KEY,
     )
     
-    model = OpenAIModel(
+    model = OpenAIChatModel(
         DEEPSEEK_MODEL,
         provider=provider,
     )
@@ -82,10 +82,12 @@ Generate response and justification:"""
     result = await agent.run(prompt)
     output = result.output
     
-    # Ensure status is replied
+    # Ensure status is replied and pass through metadata
     output.status = "replied"
     output.request_type = classification.request_type
     output.product_area = classification.product_area
+    output.confidence = classification.confidence
+    output.max_similarity = retrieval.max_similarity
     
     return output
 
@@ -94,6 +96,7 @@ async def generate_escalation_response(
     ticket: Ticket,
     classification: ClassificationResult,
     escalation: EscalationCheck,
+    retrieval: RetrievalResult,
 ) -> AgentOutput:
     """Generate a response for an escalated ticket."""
     agent = create_generator_agent()
@@ -117,9 +120,11 @@ Generate a professional escalation response and justification explaining why thi
     result = await agent.run(prompt)
     output = result.output
     
-    # Ensure status is escalated
+    # Ensure status is escalated and pass through metadata
     output.status = "escalated"
     output.request_type = classification.request_type
     output.product_area = classification.product_area
+    output.confidence = classification.confidence
+    output.max_similarity = retrieval.max_similarity
     
     return output

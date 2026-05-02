@@ -31,3 +31,11 @@ data/index/
 data/embeddings/
 *.sqlite
 *.db
+
+# ChromaDB local data
+chroma_data/
+code/chroma_data/
+
+# FAISS index files (deprecated)
+corpus.index
+corpus_metadata.pkl

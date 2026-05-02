@@ -1,6 +1,6 @@
 """Pydantic models for structured outputs throughout the pipeline."""
 
-from typing import List, Literal, Optional
+from typing import List, Literal
 from pydantic import BaseModel, Field
 
 
@@ -56,6 +56,8 @@ class AgentOutput(BaseModel):
     response: str = Field(description="User-facing response")
     justification: str = Field(description="Explanation of the decision")
     request_type: str = Field(description="Request type classification")
+    confidence: float = Field(default=0.0, ge=0.0, le=1.0, description="Classification confidence")
+    max_similarity: float = Field(default=0.0, ge=0.0, le=1.0, description="Max retrieval similarity")
     
     def to_csv_row(self) -> dict:
         """Convert to dict for CSV output."""

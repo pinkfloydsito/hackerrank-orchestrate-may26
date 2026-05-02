@@ -2,13 +2,13 @@
 
 import re
 from pydantic_ai import Agent
-from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
 from config import (
     DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL,
     SIMILARITY_THRESHOLD, CLASSIFICATION_CONFIDENCE_THRESHOLD,
-    ESCALATION_TEMPLATES
+    HIGH_CONFIDENCE_SIMILARITY, ESCALATION_TEMPLATES
 )
 from models import Ticket, ClassificationResult, RetrievalResult, EscalationCheck
 
@@ -22,10 +22,11 @@ SENSITIVE_PATTERNS = {
 }
 
 SENSITIVE_KEYWORDS = [
-    "breach", "fraud", "account takeover", "hacked", "stolen identity",
-    "identity theft", "security vulnerability", "bug bounty", "legal",
-    "lawyer", "attorney", "lawsuit", "gdpr", "ccpa", "regulatory",
-    "compliance violation", "data leak", "unauthorized access",
+    "breach", "account takeover", "hacked", "stolen identity",
+    "identity theft", "security vulnerability", "bug bounty", "legal action",
+    "lawyer", "attorney", "lawsuit", "gdpr violation", "ccpa violation", "regulatory violation",
+    "compliance violation", "data leak", "unauthorized access", "i committed fraud",
+    "security incident", "data breach",
 ]
 
 EXPLICIT_ESCALATION_KEYWORDS = [
@@ -41,7 +42,7 @@ def check_regex_patterns(text: str) -> tuple:
     # Check PII patterns
     for pattern_name, pattern in SENSITIVE_PATTERNS.items():
         if re.search(pattern, text, re.IGNORECASE):
-            return True, f"sensitive_data", f"Detected {pattern_name} in ticket"
+            return True, "sensitive_data", f"Detected {pattern_name} in ticket"
     
     # Check sensitive keywords
     for keyword in SENSITIVE_KEYWORDS:
@@ -63,7 +64,7 @@ def create_escalation_agent() -> Agent:
         api_key=DEEPSEEK_API_KEY,
     )
     
-    model = OpenAIModel(
+    model = OpenAIChatModel(
         DEEPSEEK_MODEL,
         provider=provider,
     )
@@ -71,21 +72,25 @@ def create_escalation_agent() -> Agent:
     system_prompt = """You are an escalation checker for support tickets. Your job is to determine if a ticket requires escalation to a human agent.
 
 Escalate if ANY of these apply:
-1. Sensitive personal information (SSN, credit card, passwords, API keys)
-2. Security incidents (breach, fraud, identity theft, unauthorized access)
-3. Legal or compliance issues (lawsuit, regulatory, GDPR, CCPA)
+1. Sensitive personal information exposed (SSN, credit card numbers, passwords, API keys)
+2. Security incidents reported by user (breach, account takeover, identity theft, unauthorized access)
+3. Legal or compliance issues (lawsuit, regulatory violation, GDPR/CCPA complaint)
 4. Account takeover or security vulnerability reports
-5. The ticket is dangerous, harmful, or requests illegal actions
-6. The ticket explicitly asks for a human agent
-7. The classification confidence is very low
-8. No relevant documentation could be found
+5. The ticket requests illegal actions or is dangerous/harmful
+6. The ticket explicitly asks for a human agent or manager
+7. The classification confidence is very low AND retrieval similarity is poor
+8. No relevant documentation could be found for a legitimate question
 
 Do NOT escalate:
-- Simple how-to questions
+- Simple how-to questions about products/services
 - Feature requests
 - Bug reports
-- Account settings questions
-- Billing questions (unless fraud suspected)
+- Account settings or password reset questions
+- Billing or refund questions
+- Lost card reports (standard support request)
+- Questions about fees, rates, or policies
+- Reporting fraud (standard support request, not admission of fraud)
+- Questions about integrations or API usage
 
 Always respond with valid JSON: {"should_escalate": true/false, "reason": "...", "details": "..."}"""
 
@@ -121,13 +126,18 @@ async def check_escalation(
             details=f"Max retrieval similarity {retrieval.max_similarity:.3f} below threshold {SIMILARITY_THRESHOLD}",
         )
     
-    # Check classification confidence
+    # Check classification confidence - BUT allow override if retrieval is strong
     if classification.confidence < CLASSIFICATION_CONFIDENCE_THRESHOLD:
-        return EscalationCheck(
-            should_escalate=True,
-            reason="low_confidence",
-            details=f"Classification confidence {classification.confidence:.3f} below threshold {CLASSIFICATION_CONFIDENCE_THRESHOLD}",
-        )
+        # If we have high retrieval similarity and it's a valid request, don't escalate
+        if retrieval.max_similarity >= HIGH_CONFIDENCE_SIMILARITY and classification.request_type != "invalid":
+            # Continue to LLM check instead of auto-escalating
+            pass
+        else:
+            return EscalationCheck(
+                should_escalate=True,
+                reason="low_confidence",
+                details=f"Classification confidence {classification.confidence:.3f} below threshold {CLASSIFICATION_CONFIDENCE_THRESHOLD}",
+            )
     
     # LLM check for edge cases
     agent = create_escalation_agent()
