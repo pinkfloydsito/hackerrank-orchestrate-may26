@@ -4,6 +4,7 @@ import json
 from typing import List
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
 
 from config import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, PRODUCT_AREAS_PATH
 from models import Ticket, ClassificationResult
@@ -66,10 +67,14 @@ Response: {"request_type": "product_issue", "product_area": "general support", "
 
 def create_classifier_agent() -> Agent:
     """Create the classification agent."""
-    model = OpenAIModel(
-        DEEPSEEK_MODEL,
+    provider = OpenAIProvider(
         base_url=DEEPSEEK_BASE_URL,
         api_key=DEEPSEEK_API_KEY,
+    )
+    
+    model = OpenAIModel(
+        DEEPSEEK_MODEL,
+        provider=provider,
     )
     
     product_areas = load_product_areas()

@@ -2,6 +2,7 @@
 
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
 
 from config import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL
 from models import Ticket, ClassificationResult, RetrievalResult, EscalationCheck, AgentOutput
@@ -10,10 +11,14 @@ from agents.escalation import get_escalation_response
 
 def create_generator_agent() -> Agent:
     """Create the response generation agent."""
-    model = OpenAIModel(
-        DEEPSEEK_MODEL,
+    provider = OpenAIProvider(
         base_url=DEEPSEEK_BASE_URL,
         api_key=DEEPSEEK_API_KEY,
+    )
+    
+    model = OpenAIModel(
+        DEEPSEEK_MODEL,
+        provider=provider,
     )
     
     system_prompt = """You are a support agent assistant. Your job is to generate helpful, accurate responses to support tickets using ONLY the provided context.

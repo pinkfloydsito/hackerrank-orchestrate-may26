@@ -3,6 +3,7 @@
 import re
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.providers.openai import OpenAIProvider
 
 from config import (
     DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL,
@@ -57,10 +58,14 @@ def check_regex_patterns(text: str) -> tuple:
 
 def create_escalation_agent() -> Agent:
     """Create escalation check agent."""
-    model = OpenAIModel(
-        DEEPSEEK_MODEL,
+    provider = OpenAIProvider(
         base_url=DEEPSEEK_BASE_URL,
         api_key=DEEPSEEK_API_KEY,
+    )
+    
+    model = OpenAIModel(
+        DEEPSEEK_MODEL,
+        provider=provider,
     )
     
     system_prompt = """You are an escalation checker for support tickets. Your job is to determine if a ticket requires escalation to a human agent.

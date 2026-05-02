@@ -1,0 +1,2 @@
+status,product_area,response,justification,request_type
+escalated,unknown,Error processing ticket. Escalated to human agent.,Pipeline error: OpenAIChatModel.__init__() got an unexpected keyword argument 'base_url',invalid
