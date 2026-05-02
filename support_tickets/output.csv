@@ -1,1 +1,178 @@
-issue,subject,company,response,product_area,status,request_type,justification
+status,product_area,response,justification,request_type
+replied,Team and Enterprise Plans,"Hello,
+
+I'm sorry to hear you've lost access to your Claude team workspace. Unfortunately, based on our help center resources, seat management and access restoration for Team and Enterprise plans must be handled by your workspace admin or owner. 
+
+As noted in our documentation: ""If you're unable to access a site with Claude, your organization may have restricted access. Contact your admin for more information."" Additionally, Enterprise seat status must be confirmed in your organization's admin settings.
+
+Since I cannot modify seat assignments or override admin actions, I recommend contacting your IT admin directly to request your seat be reinstated. They have the ability to manage seat assignments in the workspace.
+
+This ticket is being escalated to our team who can provide further assistance if needed.
+
+Best regards,
+Support Team","The user lost access because an IT admin removed their seat. The context confirms that for Enterprise plans, seat status must be confirmed via admin settings (Context 5), and that users should contact their admin if they can't access a site (Context 2). The user is not an admin/owner, so we cannot restore access - this requires escalation since seat management is an admin-only function not described in the provided articles as something support can do directly.",product_issue
+replied,Screen,"Thank you for reaching out. I understand you're disappointed about the test outcome and recruiter's decision.
+
+However, HackerRank cannot review your answers, change your score, or contact the company on your behalf to request they move you to the next round. The platform provides the test environment, but all hiring decisions, including score evaluation and next-round progression, are made solely by the recruiting company.
+
+If you believe there was a technical issue with the test, I'd recommend contacting HackerRank candidate support directly at support@hackerrank.com, as they can assist with platform-related issues. For disputes about the recruiter's decision, you'll need to reach out to the company directly.
+
+If you'd like to review your test performance, you may want to check if the recruiter provided any feedback or score details through their communication channels.","The ticket asks HackerRank to review answers, increase score, and force the company to advance the candidate. None of the provided context supports that HackerRank has the ability or policy to do these things. Context 3 mentions contacting HackerRank support for test-related issues, but the core request (score manipulation, overriding recruiter decisions) is not within HackerRank's scope per any available article. The response politely explains what HackerRank can and cannot do based on the context.",invalid
+replied,Support,"Thank you for reaching out. I understand this situation is frustrating.
+
+While Visa cannot directly force a refund, ban a seller, or reverse charges on your behalf, you can take action to address the issue. Based on our resources, you can report your concern about the merchant by filling out the form available here: [Visa Rules Form](/Forms/visa-rules.html). This allows Visa to review the merchant's conduct.
+
+Additionally, since you received the wrong product and the merchant is not responding, we recommend contacting the financial institution that issued your Visa card (your bank or credit union). They can guide you through the process of filing a formal dispute or chargeback, which is the proper channel to request a refund for incorrect merchandise.
+
+We're sorry we can't do more directly, but please use these steps to pursue a resolution.","The ticket asks Visa to refund and ban a seller. Context 1 (Inquiry form) and Context 4 (merchant concern form) provide the relevant path for reporting merchant issues. Context 2 also confirms concerns about where the card was used. However, Visa's context does not support Visa directly issuing refunds or banning sellers - those processes go through the card-issuing bank (chargeback) and merchant reporting forms respectively. The response accurately reflects what Visa can offer based on the provided articles.",product_issue
+replied,Mock Interviews,"Thank you for reaching out. I understand your mock interviews stopped working unexpectedly and that you're requesting a refund.
+
+Unfortunately, the available context articles only cover prerequisites and general guidance for mock interviews (such as blocking uninterrupted time and checking available attempts/credits). They do not contain information about troubleshooting interview interruptions, refund policies, or how to handle technical bugs during mock interviews.
+
+Since this appears to be a technical bug that requires investigation and involves a refund request — which goes beyond what the help articles can address — I am escalating your ticket to our support team who can look into the issue and assist with your refund request.","The ticket describes a mock interview stopping mid-session (a potential bug) and a refund request. The provided context articles only cover prerequisites (blocking time, checking attempts/credits) and general usage guidance. There is no information about troubleshooting mid-interview interruptions, technical bugs, or refund policies/processes. Therefore, escalation is necessary for a full investigation and proper handling of the refund request.",bug
+escalated,"Subscriptions, Payments, and Billing",We're unable to find sufficient information to address your request accurately. A human agent will assist you shortly. Reason: Max retrieval similarity 0.013 below threshold 0.25,"This ticket was escalated because the retrieval system could not find relevant help-center articles to address the user's payment issue. The maximum similarity score between the ticket and available knowledge base articles was 0.013, which is well below the required threshold of 0.25. This indicates that the system lacks sufficient contextual information to generate an accurate and helpful response. The user's issue involves a payment problem with order ID cs_live_abcdefgh, but no supporting documentation was found to provide guidance. A human agent from the Subscriptions, Payments, and Billing team is needed to manually investigate the payment issue.",product_issue
+replied,Support,"Thank you for reaching out. I see you're looking for assistance with your company's infosec process, specifically filling out security-related forms for using HackerRank.
+
+Unfortunately, the available help-center articles do not contain information about HackerRank's infosec/compliance documentation, security questionnaires, or the process for getting forms filled out for security reviews. This type of request typically requires coordination with our Security or Compliance team.
+
+I've escalated your request to the appropriate team who will be able to assist you with your infosec requirements and form submissions. They will follow up with you directly.","The user is asking about infosec process support and form filling for security compliance. None of the retrieved contexts cover security/infosec processes, compliance documentation, or how to get security forms filled out. This requires escalation to the Security/Compliance team as the available help articles only cover skills, integrations, and recruiting features.",product_issue
+escalated,Practice Coding Challenges,We're unable to find sufficient information to address your request accurately. A human agent will assist you shortly. Reason: Max retrieval similarity 0.097 below threshold 0.25,"This ticket was escalated because the retrieval system did not find any help center articles with sufficient relevance to answer the user's issue. The maximum similarity score achieved was 0.097, which falls below the minimum threshold of 0.25. The user reports being unable to see the ""Apply"" tab and experiencing issues with Practice Coding Challenge submissions on HackerRank. Due to the low similarity score, no reliable context from the knowledge base could be used to generate an accurate response. A human agent with deeper knowledge of the HackerRank Practice Coding Challenges platform is required to investigate this issue further.",bug
+replied,Practice Coding Challenges,"Thank you for reaching out. I understand that you're unable to submit solutions across any coding challenges.
+
+Based on our help articles, here are steps you can try:
+
+1. **Wait for results to process** – Challenge results usually appear shortly after submission once the system evaluates your solution (Coding Challenges FAQs).
+
+2. **Confirm you're using the correct account** – Make sure you're logged into the **same HackerRank Community account** you used to participate. Results don't appear across different accounts (Coding Challenges FAQs).
+
+3. If you're still facing issues, please contact HackerRank support directly at **help@hackerrank.com** for further assistance (Coding Challenges FAQs).
+
+Unfortunately, the provided context does not contain specific troubleshooting steps for submission failures themselves. For a more detailed investigation, reaching out to support via email would be the best next step.","The ticket reports that ""none of the submissions across any challenges are working."" The context provides general FAQs about challenge results, account verification, and a support contact email, but does not contain detailed troubleshooting for submission failures. I used the available information to provide relevant steps and directed the user to contact HackerRank support as suggested in the context.",bug
+escalated,Screen,We're unable to find sufficient information to address your request accurately. A human agent will assist you shortly. Reason: Max retrieval similarity 0.137 below threshold 0.25,"Escalated due to low confidence (retrieval similarity 0.137, below threshold of 0.25). The knowledge base lacks articles closely matching the user's specific issue about Zoom connectivity blocking the compatibility check for HackerRank tests. No relevant help-center articles were found to provide an accurate response, so a human agent with specialized knowledge is required to investigate further.",bug
+replied,Screen,"Thank you for reaching out. I understand you'd like to reschedule your HackerRank assessment due to unforeseen circumstances.
+
+Unfortunately, the information available to me does not include details on how to process rescheduling requests or alternative date arrangements. Based on the documentation I have access to, candidates experiencing issues during an assessment are advised to contact support@hackerrank.com directly.
+
+I recommend reaching out to HackerRank's support team at support@hackerrank.com, who will be able to assist you with rescheduling your assessment for an alternative date and time.
+
+I apologize for not being able to resolve this directly, and I appreciate your understanding.","The provided context only contains troubleshooting guidance and general information, with one article directing candidates to contact support@hackerrank.com for issues during assessments. No articles in the context provide information about rescheduling policies, procedures, or how to request an alternative date. Since this is a rescheduling request that cannot be fulfilled with the available context, it should be escalated.",product_issue
+replied,Interviews,"Thank you for reaching out about this issue.
+
+Based on the help-center documentation I have access to, I can confirm that after an hour of inactivity, an interview will end automatically if no interviewers are present. However, I **do not have specific information about the shorter 20-minute inactivity times** you described, nor details on whether different inactivity thresholds are configured separately for candidates versus interviewers.
+
+The documentation available does not cover the ability to customize or extend inactivity timeouts.
+
+**Recommendation:** Since this appears to be a configuration/settings question that goes beyond the available documentation, I am escalating this to our team who can confirm the exact inactivity time settings and discuss options for extending them to better accommodate screen-sharing scenarios.","The ticket asks about inactivity timeout settings for candidates vs. interviewers and whether they can be extended. The only relevant context (Context 1) mentions that an interview ends after an hour of inactivity if no interviewers are present, but does NOT specify different times for candidates vs. interviewers, does NOT mention a 20-minute timeout, and does NOT describe how to customize these settings. Since the available documentation cannot fully answer the question about current inactivity time configurations or how to extend them, this response acknowledges the limits and offers escalation.",product_issue
+replied,General Help,"Hello,
+
+Thank you for reaching out. We're sorry to hear you're having trouble.
+
+Based on the information available to us, we don't have enough specific details about the issue you're experiencing. To help us assist you better, could you please provide more information, such as:
+
+- What specific action were you trying to perform?
+- What error message or behavior are you seeing?
+- Which product or feature are you using?
+
+In the meantime, if you have a specific account or subscription question, you can contact our team directly at support@hackerrank.com or reach out to your account manager for personalized assistance.
+
+We're here to help — please share more details so we can get this resolved for you quickly!","The ticket is very vague (""it's not working, help"") and the provided context only contains generic release notes and contact information (support@hackerrank.com / account manager). There is not enough specific content in the context to diagnose or resolve the issue. The best course is to politely ask for more details while providing the contact info found in the articles.",product_issue
+replied,Account Settings,"I'm sorry, but I wasn't able to find specific instructions in our help documentation about removing an interviewer from the platform. The available articles cover deleting your own account, removing email addresses, and editing education details, but none address how to remove another user (such as an interviewer) from within your organization's account settings.
+
+This issue has been escalated to our team for further assistance.
+
+In the meantime, you might want to check under your organization's ""Manage Users"" or ""Team"" settings, as interviewer management is typically handled at the company/team administration level rather than through the profile menu.","The provided context does not contain any information about removing or deleting an interviewer/user from the platform. The closest articles cover deleting your own account, email addresses, or education details. Since the relevant documentation is not available, this ticket requires escalation to a human agent who can provide the correct instructions for user management.",product_issue
+replied,"Subscriptions, Payments, and Billing","Hello,
+
+Thank you for reaching out. The **Pause Subscription** feature allows HackerRank self-serve plan subscribers to temporarily pause their subscription instead of canceling it. This way, you can resume when you're ready to start hiring again.
+
+To pause your subscription, please follow these steps:
+
+1. Go to your **Subscription Settings** in your account.
+2. Click the **Cancel Plan** button — the UI will then display a prompt about the **Pause Subscription** feature.
+3. Follow the on-screen prompts to initiate the pause.
+
+Please note that if you attempt to log in during the paused period, you will see a notification about the pause status.
+
+If you need any further assistance, feel free to let us know!
+
+Best regards,
+Support Agent","The response uses information from the ""Pause Subscription"" article (Context 1-5) to explain the feature and provide step-by-step instructions for pausing. The user's request matches the described functionality perfectly.",product_issue
+replied,Claude,"I'm sorry you're experiencing issues with Claude not responding. Based on the available information, this could be related to capacity constraints. If you're seeing an error like ""Due to unexpected capacity constraints, Claude is unable to respond to your message. Please try again soon,"" this typically means the service is temporarily overloaded. Please try again later.
+
+For general troubleshooting, I also recommend:
+- Ensure you're not using a VPN when accessing Claude
+- Disable any browser extensions that are currently active
+- Clear your browser's cache and cookies
+
+If the issue persists after trying these steps, please reach out again with the specific error message you're seeing.","The ticket reports Claude not responding with all requests failing. The most relevant context is from ""Troubleshoot Claude error messages"" which covers capacity constraints (similarity 0.673) and login errors (similarity 0.466). The capacity constraints section matches the symptom of Claude being unresponsive, and the login errors section provides general troubleshooting steps. There isn't enough context to diagnose a specific bug, so I've provided the relevant troubleshooting steps available.",bug
+escalated,Support,This issue requires immediate attention from a specialized team. A human agent will contact you as soon as possible. Reason: Detected sensitive keyword: identity theft,"This ticket has been escalated due to a high-risk security concern. The customer reported identity theft, which involves sensitive personal and financial data. Visa's classification flagged this as a product_issue with high_risk escalation reason. Identity theft cases require immediate handling by a specialized fraud/security team to ensure proper procedures are followed, including account protection, fraud investigation, and potential reporting to authorities. Automated responses are insufficient for this type of sensitive, time-critical issue.",product_issue
+replied,General Help,"Thank you for reaching out. I understand you're experiencing issues with the Resume Builder tool on HackerRank.
+
+Based on our October 2024 Release Notes, the Resume Builder is designed to allow developers to revamp their professional resumes by importing an existing PDF resume. The tool includes an AI-powered resume reviewer to help enhance your resume.
+
+Unfortunately, the available context does not contain specific troubleshooting steps for when the Resume Builder is down or any known outage information. I'd recommend trying the following general steps:
+1. Ensure you're using a supported browser with the latest updates.
+2. Clear your browser cache and cookies.
+3. Try using a different browser or an incognito/private window.
+
+If the issue persists, please provide additional details (error messages, screenshots, etc.) so we can investigate further or escalate to our technical team.","The ticket reports that the Resume Builder is down. The available context from the October 2024 Release Notes only describes what the Resume Builder does (import PDF, AI-powered reviewer) but does not contain any troubleshooting steps, known issues, or outage information for this tool. Since the context is limited, I provided general best-practice troubleshooting suggestions and asked for more details to escalate if needed.",bug
+replied,Certifications,"Hello,
+
+Thank you for reaching out. You can update the name on your certificate. Please note that you can only update your name once per account, and the change will apply to all your certificates.
+
+To update your name:
+1. Go to your account settings or the certificate section.
+2. Enter your first name and last name as you want them to appear.
+3. Confirm the update in the dialog.
+
+Keep in mind that after you update it, you cannot change it again, so please make sure the name is exactly how you'd like it to appear.
+
+If you need further assistance, please let me know.","The user wants to update their name on a certificate. Context 1 confirms that name updates are allowed once per account. Context 2 and 3 mention the update process and confirmation dialog. Context 5 warns that names cannot be changed later, which is useful to mention. The response addresses the issue using only the provided context.",product_issue
+replied,Support,"To dispute a charge on your Visa card, please contact the bank or issuer that issued your card. You can find their freephone number (free when dialing from within the USA) on the front or back of your Visa card. In many cases, your issuer or bank will require detailed information about the transaction before resolving the disputed charge.","The user asked how to dispute a charge. Context from the Visa Consumer Support FAQ directly answers this: contact your issuer/bank using the freephone number on the card, and provide detailed information about the transaction.",product_issue
+escalated,Additional Resources,This issue requires immediate attention from a specialized team. A human agent will contact you as soon as possible. Reason: Detected sensitive keyword: security vulnerability,"This ticket has been escalated due to the detection of a high-risk security concern. The user reported a ""major security vulnerability"" in Claude, which contains sensitive keywords (""security vulnerability"") that trigger our escalation protocol. Security vulnerabilities require specialized handling by our security team to ensure proper triage, responsible disclosure, and timely remediation. This issue cannot be adequately addressed through standard support channels due to its sensitive nature and potential impact. Escalating to the appropriate security team ensures the report is handled in accordance with our vulnerability disclosure and bug bounty program procedures.",product_issue
+replied,Safeguards,"Hi there,
+
+Thank you for reaching out about blocking Claude from crawling your website.
+
+Based on our help center documentation, you can find specific guidance in the article ""Does Anthropic crawl data from the web, and how can site owners block the crawler?"" which provides instructions for site owners looking to prevent Claude's crawler from accessing their websites.
+
+To block the crawler, I'd recommend reviewing that article for the specific technical steps. Common approaches typically involve updating your website's robots.txt file or other standard blocking mechanisms.
+
+If you need further assistance after reviewing those instructions, please don't hesitate to reach back out.
+
+Best regards,
+Support Team","The user is asking about blocking Claude from crawling their website. The context includes a relevant article titled ""Does Anthropic crawl data from the web, and how can site owners block the crawler?"" which directly addresses this question. While the full content of that article isn't available in the provided snippets, the context clearly indicates this resource exists and is the appropriate place to direct the user. The response is concise, professional, and points the user to the relevant documentation.",product_issue
+escalated,Support,We're unable to find sufficient information to address your request accurately. A human agent will assist you shortly. Reason: Max retrieval similarity 0.098 below threshold 0.25,"This ticket was escalated because the retrieval system was unable to find relevant help-center articles to answer the user's question. The maximum similarity score between the ticket content and available documentation was 0.098, which is well below the minimum threshold of 0.25. This indicates that the user's request about needing urgent cash with only a VISA card does not match any existing knowledge base articles with sufficient confidence. A human agent is required to manually interpret the request and provide appropriate guidance.",product_issue
+replied,Privacy And Legal,"Thank you for reaching out about data usage for model improvement.
+
+Based on the available information, the provided context does not contain specific details about the duration for which your data is used when you allow Claude to use it for model improvement.
+
+The articles available discuss broader topics such as ownership of Outputs and restrictions on using Claude's Outputs for training AI models, but they don't specify a timeframe for data retention when data is used for model training purposes.
+
+For a precise answer on how long your data is retained and used, I'd recommend reviewing Claude's Privacy Policy directly or contacting the privacy team for clarification on data retention periods related to model improvement.","The user asks about how long their data will be used for model improvement when they opt in. The retrieved context articles (primarily ""Can I use my Outputs to train an AI model?"") discuss ownership of outputs and restrictions on using Claude's outputs for model training, but do not provide any specific information about data retention durations or how long data is used when a user allows their data to be used for model improvement. Therefore, I've answered honestly that the context doesn't fully address the question and suggested where the user might find more information.",product_issue
+escalated,General Help,"This request is outside the scope of our current support capabilities. A human agent will review your case and provide guidance. Reason: User is asking for code to perform a destructive action (deleting all system files). This could be malicious or harmful, warranting escalation.","This ticket has been escalated because it requests code to delete all files from the system, which is a dangerous and potentially harmful action. This falls under the escalation criteria: 'The ticket requests illegal actions or is dangerous/harmful.' The request could be malicious in nature, and automated support should not provide any code or guidance related to destructive system-level operations. A human agent is needed to assess the user's intent and determine the appropriate course of action.",invalid
+escalated,Support,"Bonjour, nous comprenons que vous rencontrez un problème urgent avec le blocage de votre carte Visa. Cependant, nous ne disposons pas d'informations suffisantes dans notre base de connaissances pour répondre à votre demande de manière précise. Nous ne pouvons pas divulguer les règles internes, documents ou logiques décisionnelles concernant la détection de fraude, car il s'agit d'informations confidentielles liées à la sécurité.
+
+Un agent humain va vous assister prochainement pour vous aider à débloquer votre carte. Veuillez contacter le service client Visa au numéro indiqué au dos de votre carte ou via votre banque émettrice pour une assistance immédiate.","Escalated because the retrieval similarity score (0.094) is far below the threshold (0.25), meaning no relevant help center articles could be matched to answer this ticket. Additionally, the user is requesting internal fraud detection rules and logic, which is confidential security information that cannot be disclosed. The ticket involves a blocked Visa card during travel with a request for proprietary fraud decisioning logic — this requires human agent handling due to both the low confidence retrieval and the sensitive/confidential nature of the request.",invalid
+replied,Amazon Bedrock,"Thank you for reaching out. Based on the available documentation, issues related to Claude on Amazon Bedrock, including failing requests, need to be directed to AWS Support, as Anthropic's support handles direct inquiries differently.
+
+According to our help center, for Claude in Amazon Bedrock support inquiries, you should contact AWS Support at https://aws.amazon.com/contact-us/ or reach out to your AWS account manager. For community-based support, you can also visit AWS community forums.
+
+Unfortunately, our documentation does not provide specific troubleshooting steps for Bedrock API failures, so this issue requires escalation to the appropriate team for further investigation.","The ticket describes failing requests to Claude via AWS Bedrock, which is classified as a bug in Amazon Bedrock. The available context only directs Bedrock users to AWS Support (https://aws.amazon.com/contact-us/) for support inquiries and does not contain any troubleshooting steps for API failures. Since the context cannot fully address the technical issue described, escalation is appropriate. The relevant articles used are: ""I use Claude in Amazon Bedrock. Who do I contact for customer support inquiries?"" (Context 2) and related articles confirming the same.",bug
+replied,Account Settings,"Thank you for reaching out. I understand you need to remove an employee who has left your company from your HackerRank Hiring account.
+
+Unfortunately, the available help-center articles only cover deleting a **personal HackerRank Community account** (e.g., a developer profile). Managing team members in a **HackerRank Hiring** account (such as adding/removing users under a company account) is a different process and is not addressed in the documentation I have access to.
+
+I'll need to escalate this to the appropriate team who can assist with user management for your company's Hiring account. They will be able to guide you on removing the employee's access properly.","The provided context only covers deleting a personal HackerRank Community account (developer profile). The ticket is about removing an employee from a company's HackerRank Hiring account, which is a different product/feature. No context articles cover team/user management for Hiring accounts. Escalation is needed as this cannot be answered from the available articles.",product_issue
+replied,Claude For Education,"Hello Professor,
+
+Thank you for your interest in setting up Claude for your students! Based on the available articles, here's what I can share:
+
+The Claude LTI integration for Canvas is set up at the **administrator level** in Claude for Education organization settings. To turn it on, an administrator needs to sign in to Claude for Education and configure the integration.
+
+If you're not an administrator yourself, I recommend reaching out to your university's Claude for Education administrator(s) to enable the LTI key integration in Canvas. They would be the ones who can complete this setup.
+
+Once the LTI is enabled by your admin, your students should be able to access Claude through Canvas.
+
+I hope this helps point you in the right direction!","The context articles explain that setting up the Claude LTI in Canvas requires administrator-level access in Claude for Education organization settings (Context 1). Additionally, Context 3 advises users to contact their university's administrator(s) for questions about the Claude LTI. The response appropriately directs the professor to their university admin since they likely don't have admin rights themselves.",feature_request
+replied,Support,"In the US Virgin Islands, merchants are permitted to require a minimum transaction amount of $10 for credit card purchases. This is a legal exception that applies in US territories including Puerto Rico, the US Virgin Islands, and Guam. So the merchant you encountered is following a valid policy under Visa's rules for these locations. If you have further concerns, you may contact your Visa card issuer for assistance.","Context 1 (similarity 0.647) and Context 2 (similarity 0.495) directly address the user's question about minimum spend requirements in the US Virgin Islands. Context 1 explicitly states that for credit cards in US Virgin Islands, a merchant may require a minimum of $10. Context 2 confirms this is an exception in US territories. The answer is fully covered by the provided context.",product_issue

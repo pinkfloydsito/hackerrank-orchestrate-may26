@@ -20,11 +20,16 @@ async def process_ticket(ticket_row: dict) -> AgentOutput:
     4. Check escalation
     5. Generate response or escalate
     """
-    # Step 1: Parse
+    # Step 1: Parse - sanitize NaN values from pandas
+    def sanitize(val):
+        if pd.isna(val):
+            return ""
+        return str(val)
+    
     ticket = Ticket(
-        issue=ticket_row.get("Issue", ""),
-        subject=ticket_row.get("Subject", ""),
-        company=ticket_row.get("Company", "None"),
+        issue=sanitize(ticket_row.get("Issue", "")),
+        subject=sanitize(ticket_row.get("Subject", "")),
+        company=sanitize(ticket_row.get("Company", "None")) or "None",
     )
     
     # Step 2: Classify
