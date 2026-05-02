@@ -14,11 +14,14 @@ from models import Ticket, ClassificationResult, RetrievalResult, EscalationChec
 
 
 # Regex patterns for PII and sensitive content
-SENSITIVE_PATTERNS = {
+PII_PATTERNS = {
     "ssn": r"\b\d{3}-\d{2}-\d{4}\b",
-    "credit_card": r"\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b",
-    "password": r"\b(password|passwd|pwd)\s*[:=]\s*\S+",
-    "api_key": r"\b(api[_-]?key|token|secret)\s*[:=]\s*[a-zA-Z0-9]{10,}",
+    "credit_card": r"\b(?:\d{4}[\s-]?){3}\d{4}\b",
+    "password_exposed": r"\b(password|passwd|pwd)\s*[:=]\s*\S+",
+    "api_key_exposed": r"\b(api[_-]?key|token|secret)\s*[:=]\s*[a-zA-Z0-9]{10,}",
+    "email_address": r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b",
+    "phone_number": r"\b\+?\d{1,3}[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b",
+    "bank_account": r"\b\d{8,17}\b",
 }
 
 SENSITIVE_KEYWORDS = [
@@ -26,7 +29,19 @@ SENSITIVE_KEYWORDS = [
     "identity theft", "security vulnerability", "bug bounty", "legal action",
     "lawyer", "attorney", "lawsuit", "gdpr violation", "ccpa violation", "regulatory violation",
     "compliance violation", "data leak", "unauthorized access", "i committed fraud",
-    "security incident", "data breach",
+    "security incident", "data breach", "blackmail", "extortion", "ransom",
+]
+
+# Keywords that should NOT trigger escalation (context-dependent)
+SAFE_CONTEXTS = [
+    "how do i report fraud",
+    "report fraudulent",
+    "report fraud",
+    "fraudulent charges",
+    "suspect fraud",
+    "potential fraud",
+    "fraud protection",
+    "fraud alert",
 ]
 
 EXPLICIT_ESCALATION_KEYWORDS = [
@@ -35,24 +50,94 @@ EXPLICIT_ESCALATION_KEYWORDS = [
 ]
 
 
-def check_regex_patterns(text: str) -> tuple:
-    """Check text for sensitive patterns via regex."""
+def _has_safe_context(text: str, keyword: str) -> bool:
+    """Check if a sensitive keyword appears in a safe context."""
+    text_lower = text.lower()
+    for safe_context in SAFE_CONTEXTS:
+        if safe_context in text_lower and keyword in text_lower:
+            return True
+    return False
+
+
+def check_pii_exposure(text: str) -> tuple:
+    """Check for exposed PII in ticket text.
+    
+    Returns: (should_escalate, reason, details)
+    """
+    # Check PII patterns
+    for pattern_name, pattern in PII_PATTERNS.items():
+        matches = re.findall(pattern, text, re.IGNORECASE)
+        if matches:
+            # Don't escalate for just email/phone - only if combined with other sensitive content
+            if pattern_name in ("email_address", "phone_number"):
+                # Check if there's other sensitive content
+                text_lower = text.lower()
+                has_other_sensitive = any(
+                    kw in text_lower for kw in 
+                    ["password", "ssn", "credit card", "account number", "routing number"]
+                )
+                if not has_other_sensitive:
+                    continue
+            return True, "sensitive_data", f"Detected exposed {pattern_name} in ticket"
+    
+    return False, "", ""
+
+
+def check_sensitive_keywords(text: str) -> tuple:
+    """Check for sensitive keywords with context awareness.
+    
+    Returns: (should_escalate, reason, details)
+    """
     text_lower = text.lower()
     
-    # Check PII patterns
-    for pattern_name, pattern in SENSITIVE_PATTERNS.items():
-        if re.search(pattern, text, re.IGNORECASE):
-            return True, "sensitive_data", f"Detected {pattern_name} in ticket"
-    
-    # Check sensitive keywords
     for keyword in SENSITIVE_KEYWORDS:
         if keyword in text_lower:
+            # Check if it's in a safe context
+            if _has_safe_context(text, keyword):
+                continue
             return True, "high_risk", f"Detected sensitive keyword: {keyword}"
     
-    # Check explicit escalation
+    return False, "", ""
+
+
+def check_explicit_escalation(text: str) -> tuple:
+    """Check if user explicitly requested escalation.
+    
+    Returns: (should_escalate, reason, details)
+    """
+    text_lower = text.lower()
+    
     for keyword in EXPLICIT_ESCALATION_KEYWORDS:
         if keyword in text_lower:
             return True, "explicit_request", f"User explicitly requested escalation: {keyword}"
+    
+    return False, "", ""
+
+
+def check_regex_patterns(text: str) -> tuple:
+    """Comprehensive regex-based escalation check.
+    
+    Pipeline:
+    1. Check for exposed PII
+    2. Check for sensitive keywords (with context awareness)
+    3. Check for explicit escalation requests
+    
+    Returns: (should_escalate, reason, details)
+    """
+    # Check PII exposure first
+    result = check_pii_exposure(text)
+    if result[0]:
+        return result
+    
+    # Check sensitive keywords
+    result = check_sensitive_keywords(text)
+    if result[0]:
+        return result
+    
+    # Check explicit escalation
+    result = check_explicit_escalation(text)
+    if result[0]:
+        return result
     
     return False, "", ""
 
