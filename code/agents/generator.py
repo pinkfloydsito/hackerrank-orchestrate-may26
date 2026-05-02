@@ -38,7 +38,7 @@ Always respond with valid JSON: {"status": "replied|escalated", "product_area": 
     return Agent(
         model=model,
         system_prompt=system_prompt,
-        result_type=AgentOutput,
+        output_type=AgentOutput,
     )
 
 

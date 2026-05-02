@@ -92,7 +92,7 @@ Always respond with valid JSON: {"should_escalate": true/false, "reason": "...",
     return Agent(
         model=model,
         system_prompt=system_prompt,
-        result_type=EscalationCheck,
+        output_type=EscalationCheck,
     )
 
 

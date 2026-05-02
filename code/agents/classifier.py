@@ -102,7 +102,7 @@ Always respond with valid JSON matching: {{"request_type": "...", "product_area"
     return Agent(
         model=model,
         system_prompt=system_prompt,
-        result_type=ClassificationResult,
+        output_type=ClassificationResult,
     )
 
 
