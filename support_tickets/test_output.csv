@@ -1,2 +1,6 @@
 status,product_area,response,justification,request_type
-escalated,unknown,Error processing ticket. Escalated to human agent.,Pipeline error: 'AgentRunResult' object has no attribute 'data',invalid
+replied,admin,"I understand you've lost access to your Claude workspace after your IT admin removed your seat. Unfortunately, I'm unable to restore your access directly.
+
+According to our help center articles, only organization Admins can manage Console members and seat assignments (source: ""Inviting members to the Claude Console""). Seat management actions, including assigning and unassigning seats, are controlled by organization administrators in the Organization settings (source: ""Purchase and manage seats on Enterprise plans"").
+
+Since you are not the workspace owner or admin, this request needs to be handled by someone with the appropriate permissions. I recommend contacting your IT admin directly to request that your seat be reassigned. Alternatively, please reach out to our Support team via the message icon in the bottom right of any Help Center page for further assistance (source: ""How to log out of all active sessions"").","The user is requesting access restoration that only an organization Admin can perform. The context confirms that only org Admins can manage seats and invitations. Since the user is not an admin or owner, this request cannot be fulfilled through this channel and needs to be escalated or redirected to the proper authority (the IT admin or Support team).",product_issue
