@@ -76,6 +76,10 @@ def parse_corpus() -> tuple[List[Any], set]:
                         stem = md_file.stem
                         product_area = "general" if stem.lower() == "index" else stem.replace("-", " ").replace("_", " ")
                 
+                # Normalize product area to title case for consistency
+                # This ensures classifier output matches metadata
+                product_area = product_area.title()
+                
                 product_areas.add(f"{ecosystem}:{product_area}")
 
                 # 3. Split by Markdown Headers

@@ -26,7 +26,8 @@ DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
 DEEPSEEK_MODEL = "deepseek-chat"
 
 # Embedding Model
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+# BGE-small-en-v1.5: Better retrieval quality than MiniLM, same 384d dimension
+EMBEDDING_MODEL = "BAAI/bge-small-en-v1.5"
 EMBEDDING_DIM = 384
 
 # Chunking

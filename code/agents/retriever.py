@@ -203,8 +203,14 @@ class Retriever:
         # Build metadata filter
         filter_dict = self._build_metadata_filter(ticket, resolved_product_area)
         
-        # Step 1: Multi-query retrieval
+        # Step 1: Multi-query retrieval with filter
         docs = self._multi_query_retrieval(query, filter_dict, top_k=TOP_K_RETRIEVAL)
+        
+        # Fallback: if no results with product_area filter, try without it
+        if not docs and resolved_product_area:
+            # Try with just ecosystem filter
+            ecosystem_only_filter = self._build_metadata_filter(ticket, None)
+            docs = self._multi_query_retrieval(query, ecosystem_only_filter, top_k=TOP_K_RETRIEVAL)
         
         # Step 2: Re-rank
         chunks = self._rerank_results(query, docs, top_k=top_k)
