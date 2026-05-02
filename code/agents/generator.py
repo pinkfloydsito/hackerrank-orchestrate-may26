@@ -80,7 +80,7 @@ Ticket:
 Generate response and justification:"""
     
     result = await agent.run(prompt)
-    output = result.data
+    output = result.output
     
     # Ensure status is replied
     output.status = "replied"
@@ -115,7 +115,7 @@ Template response: {template_response}
 Generate a professional escalation response and justification explaining why this was escalated:"""
     
     result = await agent.run(prompt)
-    output = result.data
+    output = result.output
     
     # Ensure status is escalated
     output.status = "escalated"

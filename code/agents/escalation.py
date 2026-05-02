@@ -143,7 +143,7 @@ Retrieval: {retrieval.max_similarity:.3f} max similarity
 Should this be escalated?"""
     
     result = await agent.run(prompt)
-    return result.data
+    return result.output
 
 
 def get_escalation_response(escalation: EscalationCheck) -> str:

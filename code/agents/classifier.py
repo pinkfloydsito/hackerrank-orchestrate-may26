@@ -119,4 +119,4 @@ Company: {ticket.company}
 Provide classification:"""
     
     result = await agent.run(prompt)
-    return result.data
+    return result.output
