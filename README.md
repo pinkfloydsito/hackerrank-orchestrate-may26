@@ -79,7 +79,43 @@ Conventions:
 
 ## Quickstart
 
-You are free to use any language or runtime. We recommend **Python**, **JavaScript**, or **TypeScript**.
+### Prerequisites
+
+- Python 3.10 or higher
+- API key for at least one LLM provider (DeepSeek recommended, OpenAI/Anthropic as fallback)
+
+### Setup
+
+1. **Install dependencies:**
+   ```bash
+   cd code
+   pip install -r requirements.txt
+   ```
+
+2. **Configure API keys:**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your API keys
+   ```
+
+3. **Build the corpus index** (one-time setup):
+   ```bash
+   python -m pipeline.ingest
+   ```
+
+### Run the Agent
+
+Process all support tickets:
+```bash
+python main.py --input ../support_tickets/support_tickets.csv --output ../support_tickets/output.csv
+```
+
+Process sample tickets for testing (first 5):
+```bash
+python main.py --input ../support_tickets/sample_support_tickets.csv --output ../support_tickets/test_output.csv --limit 5
+```
+
+For detailed usage instructions, see [`code/README.md`](./code/README.md).
 
 ---
 
